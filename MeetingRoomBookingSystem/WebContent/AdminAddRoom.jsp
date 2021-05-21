@@ -17,70 +17,18 @@
 	<body class="bg-light text-dark">
 		<div class="container">
 			<h1 class="text-center m-2">Add Room</h1>
-			<form class="border border-primary p-5 mt-5">
-				<div class="mb-3">
-					<label for="roomId" class="form-label">Room ID</label>
-					<select
-						class="form-select"
-						aria-label="Default select example"
-					>
-						<option selected>Enter Room ID</option>
-						<option value="1">R1</option>
-						<option value="2">R2</option>
-						<option value="3">R3</option>
-					</select>
-				</div>
+			<form action="AddMeetingRoomServlet" method="post" class="border border-primary p-5 mt-5">
+				
 				<div class="mb-3">
 					<label for="desc" class="form-label">Descrption</label>
-					<input type="text" class="form-control" id="desc" />
+					<input type="text" name = "RoomDescription" class="form-control" id="desc" />
 				</div>
 				<div class="mb-3">
-					<label for="desc" class="form-label">Facilities : </label
-					><br />
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="inlineCheckbox1"
-							value="wifi"
-						/>
-						<label class="form-check-label" for="inlineCheckbox1"
-							>Wifi</label
-						>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="inlineCheckbox2"
-							value="option2"
-						/>
-						<label class="form-check-label" for="inlineCheckbox2"
-							>Projector</label
-						>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="inlineCheckbox3"
-							value="option2"
-						/>
-						<label class="form-check-label" for="inlineCheckbox3"
-							>AC</label
-						>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="inlineCheckbox2"
-							value="option2"
-						/>
-						<label class="form-check-label" for="inlineCheckbox2"
-							>TV</label
-						>
-					</div>
+					<label for="desc" class="form-label">Room Type : </label><br>
+					Mini: <input type="radio" name="roomtype" value="mini">
+					Large:<input type="radio" name="roomtype" value="large"><br>
+					
+			
 				</div>
 				<div class="">
 					<div class="row">

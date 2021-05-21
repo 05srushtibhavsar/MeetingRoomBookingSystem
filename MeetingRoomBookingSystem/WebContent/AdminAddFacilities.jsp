@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="system.model.database.ProcessWithDatabase" import = "java.util.ArrayList" 
+    import="java.util.Hashtable" import="java.util.Enumeration"
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,19 +17,39 @@
     <div class="loginbox">
         <h1>Add Facilities</h1>
         
-            <form>
+         <br>
+         <div class="dropdown">
+            <p>Available meeting rooms</p>
             
-                <select name="Select Meeting Room">
-                    <option value="Meeting Room 1">Meeting Room 1</option>
-                    <option value="Meeting Room 2">Meeting Room 2</option>
-                    <option value="Meeting Room 3">Meeting Room 3</option>
-                    <option value="Meeting Room 4">Meeting Room 4</option>
-                    <option value="Meeting Room 5">Meeting Room 5</option>
-                    <option value="Meeting Room 6">Meeting Room 6</option>
-                </select>
-            </form>
+            <div class="dropdown-select">
+                <span class="select">Available meeting rooms</span>
+                <i class="fa fa-caret-down icon"></i>
+            </div>
+            <div class="dropdown-list">
             
-            <br>
+            <%
+            
+            ProcessWithDatabase process = new ProcessWithDatabase();
+            Hashtable<String,String> availablerooms = process.AvailableMeetingRooms();
+            Enumeration<String> enu = availablerooms.keys();
+           while(enu.hasMoreElements())
+            {
+            	
+            	String name =enu.nextElement();
+            	
+           %>
+          	 <div class="dropdown-list_item">Meeting Room <%=name %></div>
+           <%
+       
+           }
+           %>
+            </div>
+        
+            
+        </div>
+            
+        
+            <br><br><br>
          <div class="dropdown">
             <p>Aleady available facilities in meeting room</p>
             
@@ -37,20 +59,31 @@
             </div>
             <div class="dropdown-list">
             
-                <div class="dropdown-list_item">Monitor</div>
-                <div class="dropdown-list_item">wifi</div>
-                <div class="dropdown-list_item">white board</div>
-                <div class="dropdown-list_item">projector</div>
-                
-            </div>
+            <%
+            
+           // ProcessWithDatabase process = new ProcessWithDatabase();
+            ArrayList<String> availableFacilities = process.AvailableFacilities();
+            for(int i=0;i<availableFacilities.size();i++)
+            {
+            	System.out.print(availableFacilities.get(i));
+            	String name = availableFacilities.get(i);
+            	
+           %>
+           <div class="dropdown-list_item"><%=name %></div>
+           <%
+       
+           }
+           %>
+            
+         </div>
         
             
         </div>
-        <br><br><br>
-        <form>
+        <br><br>
+        <form action= "AddFacilitiesServlet" method="post">
             
                 <p>Add facility</p>
-                <input type="text" name = "" placeholder="Enter facility"><br><br>
+                <input type="text" name = "AddFacility" placeholder="Enter facility"><br><br>
                 <input type="submit" name = "sub" value="Add"><br>
             </form>
          

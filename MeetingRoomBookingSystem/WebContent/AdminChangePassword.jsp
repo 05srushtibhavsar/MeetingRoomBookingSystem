@@ -10,10 +10,10 @@
     <body>
         <div class="form">
         <p>Change Password</p>
-        <form>
-            <input type="password" name="Old Password"  placeholder="Old Password"  required="required">
-            <input type="password" name="New Password"  placeholder="New Password"  required="required">
-            <input type="password" name="Confirm Password"  placeholder="Confirm Password"  required="required">
+        <form action="ChangePasswordServlet" method="post">
+            <input type="password" name="OldPassword"  placeholder="Old Password"  required="required">
+            <input type="password" name="NewPassword"  placeholder="New Password"  required="required">
+            <input type="password" name="ConfirmPassword"  placeholder="Confirm Password"  required="required">
             <button>Change Password</button>
             </form>
         </div>
