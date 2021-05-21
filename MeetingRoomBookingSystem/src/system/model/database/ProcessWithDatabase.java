@@ -10,11 +10,13 @@ import java.util.Hashtable;
 
 import system.model.bean.AdminInfo;
 import system.model.bean.DatabaseDetails;
+import system.model.bean.EmployeesInfo;
 
 public class ProcessWithDatabase {
 	
 	DatabaseDetails details;
 	public static AdminInfo adminInfo;
+	public static EmployeesInfo empInfo;
 	//This method for validating adminLogin and return true if credentials are valid otherwise return false
 	
 	public boolean validateAdminLogin(String mobile, String password) throws SQLException, ClassNotFoundException
@@ -153,6 +155,35 @@ public class ProcessWithDatabase {
 	
 		System.out.print("In added");
 		return rs;
+	
+	}
+	
+	public boolean AddNewEmployee(String name, String email, String mobile, String password) throws ClassNotFoundException, SQLException
+	{
+	
+		System.out.print("In addRooms");
+		boolean status = false;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+		Statement st=con.createStatement();
+		System.out.print("555555");
+		String query="insert into employees value(emp_id,'"+name+"','"+email+"','"+mobile+
+				"','"+password+"')'";
+		System.out.print("6666");
+		int res=st.executeUpdate(query);
+		System.out.print("7777");
+		
+		query="select emp_id from employees where emp_mobile= '"+mobile+"';";
+		
+		ResultSet rs=st.executeQuery(query);
+		
+		status = rs.next();
+		int id = rs.getInt(1);
+		
+		empInfo = new EmployeesInfo(id,name, email, mobile, password);
+		
+		System.out.print("In added");
+		return status;
 	
 	}
 	

@@ -20,7 +20,7 @@
 			<form action="AddMeetingRoomServlet" method="post" class="border border-primary p-5 mt-5">
 				
 				<div class="mb-3">
-					<label for="desc" class="form-label">Descrption</label>
+					<label for="desc" class="form-label">Description</label>
 					<input type="text" name = "RoomDescription" class="form-control" id="desc" />
 				</div>
 				<div class="mb-3">

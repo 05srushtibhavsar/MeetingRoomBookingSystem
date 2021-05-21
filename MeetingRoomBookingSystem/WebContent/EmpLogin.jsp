@@ -11,7 +11,7 @@
     <div class="loginbox">
     <img src="avatar4.webp" class="avatar">
         <h1> Admin Login Here</h1>
-        <form action = "AdminLoginpage" method="post">
+        <form action = "EmpLoginServlet" method="post">
         
             <p>Mobile Number</p>
             <input type = "number" name = "Mobile" placeholder = "Enter Mobile Number">

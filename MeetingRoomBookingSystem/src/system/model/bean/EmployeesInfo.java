@@ -9,6 +9,15 @@ public class EmployeesInfo {
 	private String emp_password;
 	
 	
+	public EmployeesInfo(int emp_id, String emp_name, String emp_email, String emp_mobile, String emp_password) {
+	
+		this.emp_id = emp_id;
+		this.emp_name = emp_name;
+		this.emp_email = emp_email;
+		this.emp_mobile = emp_mobile;
+		this.emp_password = emp_password;
+	}
+	
 	public int getEmp_id() {
 		return emp_id;
 	}

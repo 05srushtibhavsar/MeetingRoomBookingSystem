@@ -127,3 +127,56 @@ input[type="file"] {
     color: #F54455;
     
 }
+
+.loginBox input
+{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.loginBox input[type="number"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.loginBox input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #F54455;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    
+}
+
+.loginBox input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #4EF360;
+    color: #000;
+    
+}
+
+.loginBox a
+{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgray; 
+}
+
+.loginBox a:hover
+{
+    color: #F54455;
+    
+}
+
+
