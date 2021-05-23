@@ -44,6 +44,8 @@ public class ChangePasswordServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
 		System.out.println("Hello from Change Password post ");
 		
 		String oldPass = request.getParameter("OldPassword");

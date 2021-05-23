@@ -12,17 +12,15 @@
 			integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 			crossorigin="anonymous"
 		/>
+		<script type="text/javascript" src="JS/AdminLoginJS.js"></script>
 		<title>Add Room</title>
 	</head>
 	<body class="bg-light text-dark">
 		<div class="container">
 			<h1 class="text-center m-2">Add Room</h1>
-			<form action="AddMeetingRoomServlet" method="post" class="border border-primary p-5 mt-5">
+			<form action="AddMeetingRoomServlet" method="post" name="adminAddRoom" class="border border-primary p-5 mt-5">
 				
-				<div class="mb-3">
-					<label for="desc" class="form-label">Description</label>
-					<input type="text" name = "RoomDescription" class="form-control" id="desc" />
-				</div>
+				
 				<div class="mb-3">
 					<label for="desc" class="form-label">Room Type : </label><br>
 					Mini: <input type="radio" name="roomtype" value="mini">
@@ -84,7 +82,7 @@
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-outline-success">
+				<button type="submit" class="btn btn-outline-success" onClick = "return adminAddRooms(); ">
 					Submit
 				</button>
 			</form>

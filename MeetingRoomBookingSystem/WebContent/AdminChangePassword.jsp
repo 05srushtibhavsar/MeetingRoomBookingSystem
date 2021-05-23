@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Meeting Room Booking</title>
-        <link rel="stylesheet" type="text/css" href="CSS/AdminChangePasswordCss.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/AdminChangePasswordCss.css">
     </head>
     <body>
         <div class="form">

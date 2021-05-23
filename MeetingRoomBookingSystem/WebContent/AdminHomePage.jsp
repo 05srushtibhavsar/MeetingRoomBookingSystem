@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="system.model.database.ProcessWithDatabase"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 <div class="sidebar">
             <center>
                 <img src="person-icon.png"  class="profile_image" alt="">
-                <h4> Admin</h4>
+                <h4> <%=ProcessWithDatabase.adminInfo.getAdmin_name() %></h4>
             </center>
             <a href="AdminAddFacilities.jsp"><span>Add Facilities</span></a>
             <a href="AdminAddRoom.jsp"><span>Add Meeting room</span></a>

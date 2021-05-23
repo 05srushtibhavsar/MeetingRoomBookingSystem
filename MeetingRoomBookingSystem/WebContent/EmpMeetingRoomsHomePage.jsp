@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="system.model.database.ProcessWithDatabase" import = "java.util.ArrayList" 
+    import="java.util.Hashtable" import="java.util.Enumeration"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/EmpMeetingRoomsHomePageCss.css">
 <body>
 
-    <h1>Meeting Rooms available on floor</h1>
+    <h1>Rooms</h1>
     <div class ="dashboardLink">
         <a href="EmpHomePage.jsp" >Dashboard</a><br>
     </div>
@@ -18,14 +19,36 @@
         
             <a href="EmpBookRoom.jsp">
             
-                <button class="btn btn1">Meeting Room 1</button>
-                <button class="btn btn1">Meeting Room 2</button>
-                <button class="btn btn1">Meeting Room 3</button><br>
-                <button class="btn btn1">Meeting Room 4</button>
-                <button class="btn btn1">Meeting Room 5</button>
-                <button class="btn btn1">Meeting Room 6</button><br>
+            <form action="EmpGetRoomId" method="get">
+            <%
+            
+            int x=1;
+            ProcessWithDatabase process = new ProcessWithDatabase();
+            Hashtable<String,String> availablerooms = process.AvailableMeetingRooms();
+            Enumeration<String> enu = availablerooms.keys();
+           while(enu.hasMoreElements())
+            {
+            	
+            	String name =enu.nextElement();
+            	
+           %>
+          	<button class="btn btn1" name="roomId" value=<%=name %>>Meeting Room <%=name %><br><%=availablerooms.get(name) %></button>
+          	
+           <%
+       
+	           if(x>3)
+	           {
+	        	  x=1;
+	       	%><br>
+	       	<%
+	        	  
+	          	}
+           }
+           %>
+           
         
-            </a>
+          </a>
+          </form>
         
         </div>
        

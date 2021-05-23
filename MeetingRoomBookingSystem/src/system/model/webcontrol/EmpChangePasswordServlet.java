@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import system.model.database.ProcessWithDatabase;
 
 /**
- * Servlet implementation class EmpRegisterServlet
+ * Servlet implementation class EmpChangePasswordServlet
  */
-@WebServlet("/EmpRegisterServlet")
-public class EmpRegisterServlet extends HttpServlet {
+@WebServlet("/EmpChangePasswordServlet")
+public class EmpChangePasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	ProcessWithDatabase processdata;
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -33,29 +34,37 @@ public class EmpRegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Hello from post ");
+	System.out.println("Hello from Change Password post ");
 		
-		String name = request.getParameter("EmpName");
-		String email = request.getParameter("EmpEmail");
-		String mobile = request.getParameter("EmpMobile");
-		String password = request.getParameter("EmpPassword");
-		System.out.print(name+email+mobile+password);
+		String oldPass = request.getParameter("Old_Password");
+		String newPassword = request.getParameter("New_Password");
+		String confirmPassword = request.getParameter("Confirm_Password");
+		
 		
 		try {
-			boolean status = processdata.AddNewEmployee(name, email, mobile, password);
-			if(status==true)
+			if(newPassword.equals(confirmPassword))
 			{
-		
-				response.sendRedirect("EmpHomePage.jsp");
+				boolean status = processdata.changeEmpPassword(oldPass, newPassword);
+				if(status==true)
+				{
+			
+					response.sendRedirect("EmpHomePage.jsp");
+				}
+				else
+				{
+					response.sendRedirect("EmpChangePassword.jsp");
+				}
 			}
 			else
 			{
-				response.sendRedirect("EmpRegister.jsp");
+				response.sendRedirect("EmpChangePassword.jsp");
 			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 }

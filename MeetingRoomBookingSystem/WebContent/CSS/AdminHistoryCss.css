@@ -8,13 +8,13 @@
 
 body{
     background: url(room2.jpeg);
-    font-family: sans-serif;
+    background-size: cover;
 }
 
 .heading{
     font-size: 0 10%;
     text-align: center;
-    color: #f1f1f1;
+    color: #000000;
     margin-bottom: 30px;
 }
 

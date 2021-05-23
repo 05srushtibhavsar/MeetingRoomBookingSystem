@@ -13,18 +13,24 @@ import javax.servlet.http.HttpServletResponse;
 import system.model.database.ProcessWithDatabase;
 
 /**
- * Servlet implementation class EmpRegisterServlet
+ * Servlet implementation class EmpBookRoomServlet
  */
-@WebServlet("/EmpRegisterServlet")
-public class EmpRegisterServlet extends HttpServlet {
+@WebServlet("/EmpBookRoomServlet")
+public class EmpBookRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProcessWithDatabase processdata;
+	EmpGetRoomId RoomId;
+	 
+
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
+		
 		processdata = new ProcessWithDatabase();
+		RoomId = new EmpGetRoomId();
+		
 	}
 
 	/**
@@ -35,22 +41,22 @@ public class EmpRegisterServlet extends HttpServlet {
 		
 		System.out.println("Hello from post ");
 		
-		String name = request.getParameter("EmpName");
-		String email = request.getParameter("EmpEmail");
-		String mobile = request.getParameter("EmpMobile");
-		String password = request.getParameter("EmpPassword");
-		System.out.print(name+email+mobile+password);
+		String Date = request.getParameter("Date");
+		String InTime = request.getParameter("InTime");
+		String OutTime = request.getParameter("OutTime");
+		String attendies = request.getParameter("Attendies");
+		String id = RoomId.roomId;
 		
 		try {
-			boolean status = processdata.AddNewEmployee(name, email, mobile, password);
-			if(status==true)
+			int status = processdata.BookRoom(id, Date, InTime, OutTime, attendies);
+			if(status==1)
 			{
 		
 				response.sendRedirect("EmpHomePage.jsp");
 			}
 			else
 			{
-				response.sendRedirect("EmpRegister.jsp");
+				response.sendRedirect("EmpBookRoom.jsp");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

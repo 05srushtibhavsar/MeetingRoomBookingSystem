@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="system.model.database.ProcessWithDatabase" import = "java.util.ArrayList" 
+    import="java.util.Hashtable" import="java.util.Enumeration" import="system.model.webcontrol.EmpGetRoomId"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,15 +21,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i onclick="w3_close()" class="fa fa-remove hide-large button transparent display-topright"></i>
     <h3>Book Room</h3>
     <hr>
-    <form action="" target="_blank">
+    <form action="EmpBookRoomServlet" method="post" >
       <p><label><i class="fa fa-calendar-check-o"></i>Day</label></p>
-      <input class="input border" type="date" placeholder="DD MM YYYY" name="CheckIn" required>          
+      <input class="input border" type="date" placeholder="DD MM YYYY" name="Date" required>          
       <p><label><i class="fa fa-calendar-o"></i> From</label></p>
-      <input class="input border" type="time" placeholder="DD MM YYYY" name="CheckOut" required>
+      <input class="input border" type="time" placeholder="DD MM YYYY" name="InTime" required>
       <p><label><i class="fa fa-calendar-o"></i> To</label></p>
-      <input class="input border" type="time" placeholder="DD MM YYYY" name="CheckOut" required>         
+      <input class="input border" type="time" placeholder="DD MM YYYY" name="OutTime" required>         
       <p><label><i class="fa fa-male"></i>Attendies</label></p>
-      <input class="input border" type="number" value="1" name="Adults" min="1" max="6">              
+      <input class="input border" type="number" value="1" name="Attendies" min="1" max="6">              
       <p><button class="button block green left-align" type="submit" >Book</button></p>
     </form>
   </div>
@@ -52,7 +53,242 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
   <div class="container" id="apartment">
     <h2 class="text-green">The Room</h2>
+    
+    
+    <%
+     		
+     		
+     		EmpGetRoomId RoomId = new EmpGetRoomId();
+     		String id = RoomId.roomId;
+     		
+     		if(id.equals("1"))
+     		{
+     			
+  		%>
+    
+   <div class="display-container mySlides">
+    <img src="./pic3.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 1</p>
+      </div>
+    </div>
     <div class="display-container mySlides">
+    <img src="./pic3.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 2</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic3.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 3</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic3.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>pic 4</p>
+      </div>
+    </div>
+  </div>
+  <div class="row-padding section">
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic3.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(1)" title="Living room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic3.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="Dining room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic3.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic3.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="Second Living Room">
+    </div>
+  </div>
+
+
+    <%
+     }else if(id.equals("2"))
+     {
+    %>
+    	  <div class="display-container mySlides">
+    <img src="./pic4.jpeg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 1</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic4.jpeg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 2</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic4.jpeg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 3</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic4.jpeg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>pic 4</p>
+      </div>
+    </div>
+  </div>
+  <div class="row-padding section">
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic4.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(1)" title="Living room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic4.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="Dining room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic4.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic4.jpeg" style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="Second Living Room">
+    </div>
+  </div>
+
+    	 
+     <%
+     }else if(id.equals("3"))
+     {
+    %>
+    	  <div class="display-container mySlides">
+    <img src="./pic1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 1</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 2</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 3</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>pic 4</p>
+      </div>
+    </div>
+  </div>
+  <div class="row-padding section">
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(1)" title="Living room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="Dining room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="Second Living Room">
+    </div>
+  </div>
+     <%
+     }else if(id.equals("4"))
+     {
+    %>
+    	 <div class="display-container mySlides">
+    <img src="./pic2.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 1</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic2.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 2</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic2.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 3</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./pic2.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>pic 4</p>
+      </div>
+    </div>
+  </div>
+  <div class="row-padding section">
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic2.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(1)" title="Living room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic2.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="Dining room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic2.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./pic2.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="Second Living Room">
+    </div>
+  </div>
+
+     <%
+     }else if(id.equals("5"))
+     {
+    %>
+    	  <div class="display-container mySlides">
+    <img src="./room1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 1</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./room1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 2</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./room1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>Pic 3</p>
+      </div>
+    </div>
+    <div class="display-container mySlides">
+    <img src="./room1.jpg" style="width:100%;margin-bottom:-6px">
+      <div class="display-bottomleft container black">
+        <p>pic 4</p>
+      </div>
+    </div>
+  </div>
+  <div class="row-padding section">
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./room1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(1)" title="Living room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./room1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="Dining room">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./room1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
+    </div>
+    <div class="col s3">
+      <img class="demo opacity hover-opacity-off" src="./room1.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="Second Living Room">
+    </div>
+  </div>
+
+    	 
+     <%
+     }else if(id.equals("6"))
+     {
+    %>
+    	 <div class="display-container mySlides">
     <img src="./pic1.jpg" style="width:100%;margin-bottom:-6px">
       <div class="display-bottomleft container black">
         <p>Pic 1</p>
@@ -92,32 +328,64 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     </div>
   </div>
 
-  <div class="container">
-    <hr>
+    	<%} %>
+   
     
     <h4><strong>Facilities</strong></h4>
-    <div class="row large">
+    
+     <div class="row large">
+    <%
+    
+    int x=1;
+    ProcessWithDatabase process = new ProcessWithDatabase();
+    ArrayList<String> availableFacilities = process.AvailableFacilities();
+    for(int i=0;i<availableFacilities.size();i++)
+    {
+    	System.out.print(availableFacilities.get(i));
+    	String name = availableFacilities.get(i);
+    
+    %>
+   
+   
       <div class="col s6">
-        <p><i class="fas fa-wind"></i> AC</p>
-        <p><i class="fa fa-fw fa-wifi"></i> WiFi</p>
-        <!-- <p><i class="fa fa-fw fa-tv"></i> TV</p> -->
-      </div>
-      <div class="col s6">
-        <p><i class="fas fa-project-diagram"></i> Projector</p>
-        <p><i class="fa fa-fw fa-tv"></i> TV</p>
-        <!-- <p><i class="fa fa-fw fa-thermometer"></i> Heating</p> -->
-        <!-- <p><i class="fa fa-fw fa-wheelchair"></i> Accessible</p> -->
-      </div>
-    </div>
+        <p><i class="fas fa-wind"></i><%=name %></p>
+      </div>  
+      
+      <%
+      if(x>2)
+      {
+    	  
+      	x=1;
+      
+      %> 
+      <br>
+      
+    <%
+      }
+    }
+    %>
+     </div>
     <hr>
     
-    <h4><strong>Extra Info</strong></h4>
-    <p>Our apartment is really clean and we like to keep it that way. Enjoy the lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <hr>
+    
+    <h4><strong>Room Type</strong></h4>
+     	<%
+     		
+     		
+     		//EmpGetRoomId RoomId = new EmpGetRoomId();
+     	//String id = RoomId.roomId;
+            int m=1;
+            //ProcessWithDatabase process = new ProcessWithDatabase();
+            Hashtable<String,String> availablerooms = process.AvailableMeetingRooms();
+            String type = availablerooms.get(id);
+            	
+           %>
+          <p><%=type %>
+          	
     
     <h4><strong>Rules</strong></h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Subscribe to receive updates on available dates and special offers.</p>
+    <p>1. Keep it Clean.<br>2. Book Early.<br>3. Close the Door.<br>4. Arrange chairs properly before leaving meeting room.<br>5. Exit the Room Quickly After Meetings Have Concluded</p>
+   
   </div>
   <hr>
 </div>

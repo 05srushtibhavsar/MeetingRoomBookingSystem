@@ -9,15 +9,18 @@
   </head>
   <body>
    
+   
+   <div class="box">
    <h1>My Account</h1>
-   ID: <input type="text" value=<%=ProcessWithDatabase.adminInfo.getAdmin_id() %>>
-   <br>
-   Name: <input type="text" value=<%=ProcessWithDatabase.adminInfo.getAdmin_name() %>>
+   ID: <input type="text" disabled value=<%=ProcessWithDatabase.adminInfo.getAdmin_id() %>>
+   <br><br><br>
+   Name: <input type="text" disabled value=<%=ProcessWithDatabase.adminInfo.getAdmin_name() %>>
+   <br><br><br>
+   Email Id: <input type="text" disabled value=<%=ProcessWithDatabase.adminInfo.getAdmin_email() %>>
+   <br><br><br>
+   Mobile: <input type="text" disabled value=<%=ProcessWithDatabase.adminInfo.getAdmin_mobile() %>>
     <br>
-   Email Id: <input type="text" value=<%=ProcessWithDatabase.adminInfo.getAdmin_email() %>>
-    <br>
-   Mobile: <input type="text" value=<%=ProcessWithDatabase.adminInfo.getAdmin_mobile() %>>
-    <br>
+    </div>
    
   </body>
 </html>

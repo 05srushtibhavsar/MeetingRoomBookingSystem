@@ -11,12 +11,14 @@ import java.util.Hashtable;
 import system.model.bean.AdminInfo;
 import system.model.bean.DatabaseDetails;
 import system.model.bean.EmployeesInfo;
+import system.model.bean.MeetingDetails;
 
 public class ProcessWithDatabase {
 	
 	DatabaseDetails details;
 	public static AdminInfo adminInfo;
 	public static EmployeesInfo empInfo;
+	public static MeetingDetails meetingDetails;
 	//This method for validating adminLogin and return true if credentials are valid otherwise return false
 	
 	public boolean validateAdminLogin(String mobile, String password) throws SQLException, ClassNotFoundException
@@ -55,7 +57,17 @@ public class ProcessWithDatabase {
 
 		String query="select* from employees where emp_mobile='"+mobile+"' and emp_password='"+password+"'";
 		ResultSet rs=st.executeQuery(query);
+		
+		
+		
 		status = rs.next();
+		if(status)
+		{
+			System.out.print(rs.getString(2));
+			empInfo = new EmployeesInfo(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+			
+		}
+		
 		return status;
 	}
 	
@@ -79,6 +91,28 @@ public class ProcessWithDatabase {
 		return status;
 	}
 
+	
+	//This Method will change Employee password and return true is successfully changed otherwise false
+	
+		public boolean changeEmpPassword(String oldPass, String newPass) throws ClassNotFoundException, SQLException
+		{
+			System.out.println(oldPass+newPass);
+			boolean status = false;
+
+			if(empInfo.getEmp_password().equals(oldPass))
+			{
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+				Statement st=con.createStatement();
+				String query="update employees set emp_password='"+newPass+"' where emp_id='"+empInfo.getEmp_id()+"'";
+				int rs=st.executeUpdate(query);
+				status = true;
+			}
+			
+			return status;
+		}
+	
+	
 	//This method will return all available facilities in database in the form of arraylist
 	public ArrayList<String> AvailableFacilities() throws ClassNotFoundException, SQLException
 	{
@@ -158,17 +192,18 @@ public class ProcessWithDatabase {
 	
 	}
 	
+	//This method will add new user to system and store its details and return true is successfully stored otherwise false
 	public boolean AddNewEmployee(String name, String email, String mobile, String password) throws ClassNotFoundException, SQLException
 	{
 	
-		System.out.print("In addRooms");
+		System.out.print(name+email+mobile+password);
+		System.out.print("11111");
 		boolean status = false;
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
 		Statement st=con.createStatement();
 		System.out.print("555555");
-		String query="insert into employees value(emp_id,'"+name+"','"+email+"','"+mobile+
-				"','"+password+"')'";
+		String query="insert into employees value(emp_id,'"+name+"','"+email+"','"+mobile+"','"+password+"')";
 		System.out.print("6666");
 		int res=st.executeUpdate(query);
 		System.out.print("7777");
@@ -187,6 +222,119 @@ public class ProcessWithDatabase {
 	
 	}
 	
+	//This method will book room and returns 1 if room is booked successfully otherwise return 0
+	public int BookRoom(String roomId, String date, String inTime, String outTime, String attendies) throws ClassNotFoundException, SQLException
+	{
+		
+		int id = Integer.parseInt(roomId);
+		int empId = empInfo.getEmp_id();
+		int attendi = Integer.parseInt(attendies);
+		System.out.print("11111");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+		Statement st=con.createStatement();
+		System.out.print("555555");
+		String query="insert into bookedroom value(cart_id,'"+empId+"','"+id+"','"+date+"','"+inTime+"','"+outTime+"','"+attendi+"',0)";
+		System.out.print("6666");
+		int res=st.executeUpdate(query);
+		System.out.print("7777");
+		return res;
+		
+	}
+	
+	
+	public ArrayList<MeetingDetails> MeetingRoomsrequested() throws ClassNotFoundException, SQLException
+	{
+		System.out.println("7777");
+		ArrayList<MeetingDetails> meet = new ArrayList<>();
+		boolean status = false;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+		Statement st=con.createStatement();
+
+		String query=" select * from bookedroom inner join allmeetingrooms on allmeetingrooms.meetingRoomId=bookedroom.meetingRoomId where admin_id='"+0+"';";
+		ResultSet rs=st.executeQuery(query);
+		
+		while(rs.next())
+		{
+			System.out.print(rs.getInt(1));
+			meetingDetails = new MeetingDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getString(10));
+			meet.add(meetingDetails);
+			
+		}
+		return meet;
+	}
+	
+	public ArrayList<MeetingDetails> MeetingRoomsHistory() throws ClassNotFoundException, SQLException
+	{
+		System.out.println("7777");
+		ArrayList<MeetingDetails> meet = new ArrayList<>();
+		boolean status = false;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+		Statement st=con.createStatement();
+
+		String query=" select * from bookedroom inner join allmeetingrooms on allmeetingrooms.meetingRoomId=bookedroom.meetingRoomId;";
+		ResultSet rs=st.executeQuery(query);
+		
+		while(rs.next())
+		{
+			System.out.print(rs.getInt(1));
+			meetingDetails = new MeetingDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getString(10));
+			meet.add(meetingDetails);
+			
+		}
+		return meet;
+	}
+	
+	public ArrayList<MeetingDetails> EmpBookedRoomHistory() throws ClassNotFoundException, SQLException
+	{
+		System.out.println("7777");
+		ArrayList<MeetingDetails> meet = new ArrayList<>();
+		boolean status = false;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+		Statement st=con.createStatement();
+
+		String query=" select * from bookedroom inner join allmeetingrooms on allmeetingrooms.meetingRoomId=bookedroom.meetingRoomId where emp_id='"+empInfo.getEmp_id()+"';";
+		ResultSet rs=st.executeQuery(query);
+		
+		while(rs.next())
+		{
+			System.out.print(rs.getInt(1));
+			meetingDetails = new MeetingDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getString(10));
+			meet.add(meetingDetails);
+			
+		}
+		return meet;
+	}
+	
+	
+	//This method update roomApproval value to -1 if request to room is rejected otherwise update to admin who approved this request
+	public int RoomApproval(String name, String requestId) throws ClassNotFoundException, SQLException
+	{
+		int rs=0;
+		if(name.equals("Accept"))
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+			Statement st=con.createStatement();
+
+			String query="update bookedroom set admin_id='"+adminInfo.getAdmin_id()+"' where cart_id='"+requestId+"';";
+			rs=st.executeUpdate(query);
+		}
+		else if(name.equals("Reject"))
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+			Statement st=con.createStatement();
+
+			String query="update bookedroom set admin_id=-1 where cart_id='"+requestId+"';";
+			rs=st.executeUpdate(query);
+		}
+		return rs;
+		
+	}
 	
 	
 }

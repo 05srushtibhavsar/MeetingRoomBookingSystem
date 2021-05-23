@@ -8,6 +8,45 @@ body {
   background: url(room2.jpeg);
 }
 
+.box
+{
+	 width: 350px;
+    height: 500px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 50px 30px;
+}
+
+
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 30px;
+    
+}
+
+input
+{
+    
+    border: none;
+    width: 290px;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #808080;
+    font-size: 16px;
+  
+}
+
+
+
 .signup-form {
   font-family: "Roboto", sans-serif;
   width:650px;

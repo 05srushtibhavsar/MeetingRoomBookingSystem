@@ -8,26 +8,24 @@
     <link rel="stylesheet" href="CSS/EmpRegisterCss.css">
   </head>
   <body>
+  <div class="box">
+   <img src="avatar4.webp" class="avatar">
+   <h1>Register</h1>
     <form action="EmpRegisterServlet" method="post" class="signup-form">
-      <div class="form-header">
-        <h1>Register</h1>
-      </div>
-
-
-      <div class="form-body">
-      <h1>My Account</h1>
-  
-   Name: <input type="text" value="EmpName"  placeholder = "Enter Name">
-    <br>
-   Email Id: <input type="text" value="EmpEmail"  placeholder = "Enter Email Id">
-    <br>
-   Mobile: <input type="text" value="EmpMobile"  placeholder = "Enter Mobile Number">
-    <br>
-   Password: <input type="text" value="EmpPassword"  placeholder = "Enter Password">
-    <br>
+   
+   Name:<br> <input type="text" name="EmpName"  placeholder = "Enter Name">
+    <br><br>
+   Email Id: <br><input type="text" name="EmpEmail"  placeholder = "Enter Email Id">
+    <br><br>
+   Mobile:<br> <input type="text" name="EmpMobile"  placeholder = "Enter Mobile Number">
+    <br><br>
+   Password:<br> <input type="password" name="EmpPassword"  placeholder = "Enter Password">
+    <br><br><br>
    <input type ="submit" value = "Login"><br><br>
    
-  <a href="Login.html" >Already have an account?</a><br>
+  <a href="EmpLogin.jsp" >Already have an account?</a><br>
+ 
     </form>
+     </div>
   </body>
 </html>

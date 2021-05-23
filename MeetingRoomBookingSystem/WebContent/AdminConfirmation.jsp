@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="system.model.database.ProcessWithDatabase"
+    import = "system.model.bean.MeetingDetails" import = "java.util.ArrayList"
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,131 +17,55 @@
 		/>
 	</head>
 	<body class="bg-light text-dark">
+	
 		<div class="container">
 			<h1 class="text-center my-3">Requests for Roooms</h1>
 			<div class="row">
+			
+			
+			
+			<%
+			System.out.println("In ###########");	
+			ProcessWithDatabase process = new ProcessWithDatabase();
+			ArrayList<MeetingDetails> meet = process.MeetingRoomsrequested();%>
+			
+			<form action="RoomApprovalServlet" method="get">
+			<%
+			for(int i=0;i<meet.size();i++)
+			{
+				System.out.println("In $$$$$$$$");	
+			%>
+				
+			
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">
 								User Name & ID of Requester
 							</h5>
-							<p class="card-text">
-								Description : Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Consequuntur,
-								nisi!
-							</p>
-							<p class="card-text h6">Requested Room : R1</p>
-							<p class="card-text h6">Date : 08-03-2021</p>
-							<p class="card-text h6">From : 12:00 PM</p>
-							<p class="card-text h6">To : 2:00 PM</p>
-							<button
-								type="button"
-								class="btn btn-outline-danger"
-							>
-								Reject
-							</button>
-							<button
-								type="button"
-								class="btn btn-outline-success"
-							>
-								Accept
-							</button>
+						
+							<p class="card-text h6">Request Id: <%=meet.get(i).getMeetingId() %></p>
+							<p class="card-text h6">Employee Id: <%=meet.get(i).getEmpId() %></p>
+							<p class="card-text h6">Requested Room : <%=meet.get(i).getMeetingRoomId() %></p>
+							<p class="card-text h6">Date : <%=meet.get(i).getMeetingDate() %></p>
+							<p class="card-text h6">From : <%=meet.get(i).getMeetingInTime() %></p>
+							<p class="card-text h6">To : <%=meet.get(i).getMeetingOutTime() %></p>
+							<p class="card-text h6">Attendees : <%=meet.get(i).getMeetingAttendies() %></p>
+							
+						
+						
+							<button class="btn btn-outline-danger" name="buttonPressed" value="Accept">Accept<br></button>
+							<button class="btn btn-outline-danger" name="buttonPressed" value="Reject">Reject<br></button>
+          	
+							<input type="hidden" name="requestId" value=<%=meet.get(i).getMeetingId() %>>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">
-								User Name & ID of Requester
-							</h5>
-							<p class="card-text">
-								Description : Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Consequuntur,
-								nisi!
-							</p>
-							<p class="card-text h6">Requested Room : R2</p>
-							<p class="card-text h6">Date : 08-03-2021</p>
-							<p class="card-text h6">From : 12:00 PM</p>
-							<p class="card-text h6">To : 2:00 PM</p>
-							<button
-								type="button"
-								class="btn btn-outline-danger"
-							>
-								Reject
-							</button>
-							<button
-								type="button"
-								class="btn btn-outline-success"
-							>
-								Accept
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row my-3">
-				<div class="col-md-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">
-								User Name & ID of Requester
-							</h5>
-							<p class="card-text">
-								Description : Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Consequuntur,
-								nisi!
-							</p>
-							<p class="card-text h6">Requested Room : R3</p>
-							<p class="card-text h6">Date : 08-03-2021</p>
-							<p class="card-text h6">From : 12:00 PM</p>
-							<p class="card-text h6">To : 2:00 PM</p>
-							<button
-								type="button"
-								class="btn btn-outline-danger"
-							>
-								Reject
-							</button>
-							<button
-								type="button"
-								class="btn btn-outline-success"
-							>
-								Accept
-							</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">
-								User Name & ID of Requester
-							</h5>
-							<p class="card-text">
-								Description : Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Consequuntur,
-								nisi!
-							</p>
-							<p class="card-text h6">Requested Room : R4</p>
-							<p class="card-text h6">Date : 08-03-2021</p>
-							<p class="card-text h6">From : 12:00 PM</p>
-							<p class="card-text h6">To : 2:00 PM</p>
-							<button
-								type="button"
-								class="btn btn-outline-danger"
-							>
-								Reject
-							</button>
-							<button
-								type="button"
-								class="btn btn-outline-success"
-							>
-								Accept
-							</button>
-						</div>
-					</div>
-				</div>
+				
+			<%} %>
+			</form>
+			
+			
 			</div>
 		</div>
 		<script

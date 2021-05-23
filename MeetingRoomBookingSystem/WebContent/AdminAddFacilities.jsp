@@ -7,7 +7,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Facilities</title>
-    <link rel="stylesheet" type="text/css" href="CSS/AdminAddFacilitiesCss.css">
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/AdminAddFacilitiesCss.css">
+	 <script type="text/javascript" src="JS/AdminLoginJS.js"></script>
 <body>
 
     <div class ="dashboardLink">
@@ -80,11 +82,11 @@
             
         </div>
         <br><br>
-        <form action= "AddFacilitiesServlet" method="post">
+        <form action= "AddFacilitiesServlet" method="post" name = "addfacility">
             
                 <p>Add facility</p>
                 <input type="text" name = "AddFacility" placeholder="Enter facility"><br><br>
-                <input type="submit" name = "sub" value="Add"><br>
+                <input type="submit" name = "sub" value="Add" onClick = "return adminAddFacility(); "><br>
             </form>
          
     </div>

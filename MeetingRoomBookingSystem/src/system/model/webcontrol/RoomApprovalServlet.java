@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import system.model.database.ProcessWithDatabase;
 
 /**
- * Servlet implementation class EmpRegisterServlet
+ * Servlet implementation class RoomApprovalServlet
  */
-@WebServlet("/EmpRegisterServlet")
-public class EmpRegisterServlet extends HttpServlet {
+@WebServlet("/RoomApprovalServlet")
+public class RoomApprovalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProcessWithDatabase processdata;
 	/**
@@ -30,27 +30,25 @@ public class EmpRegisterServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Hello from post ");
-		
-		String name = request.getParameter("EmpName");
-		String email = request.getParameter("EmpEmail");
-		String mobile = request.getParameter("EmpMobile");
-		String password = request.getParameter("EmpPassword");
-		System.out.print(name+email+mobile+password);
+		System.out.println("Hello from post in confirmation");
+		String value = request.getParameter("buttonPressed");
+		String requestId = request.getParameter("requestId"); 
+		System.out.println(value+requestId);
 		
 		try {
-			boolean status = processdata.AddNewEmployee(name, email, mobile, password);
-			if(status==true)
+			int status = processdata.RoomApproval(value, requestId);
+			if(status==1)
 			{
 		
-				response.sendRedirect("EmpHomePage.jsp");
+				System.out.print("Checked");
+				response.sendRedirect("AdminConfirmation.jsp");
 			}
 			else
 			{
-				response.sendRedirect("EmpRegister.jsp");
+				response.sendRedirect("AdminConfirmation.jsp");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

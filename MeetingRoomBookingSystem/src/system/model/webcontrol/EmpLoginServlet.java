@@ -45,7 +45,7 @@ public class EmpLoginServlet extends HttpServlet {
 			if(status==true)
 			{
 		
-				response.sendRedirect("EmpDashboard.jsp");
+				response.sendRedirect("EmpHomePage.jsp");
 			}
 			else
 			{

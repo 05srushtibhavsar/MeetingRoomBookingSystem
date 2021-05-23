@@ -15,15 +15,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Sr.No.</th>
-                        <th>Employee Id</th>
+                        <th>Meet Id</th>
                         <th>Room Id</th>
+                        <th>Room Type</th>
                         <th>Date</th>
                         <th>In Time</th>
                         <th>Out Time</th>
                         <th>Attendees Count</th>
-                        <th>Admin Id</th>
-                        <th>Status</th>
+                        <th>Approval</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,22 +31,21 @@
 				
                 String status ="Pending";
 			ProcessWithDatabase process = new ProcessWithDatabase();
-			ArrayList<MeetingDetails> meet = process.MeetingRoomsHistory();
+			ArrayList<MeetingDetails> meet = process.EmpBookedRoomHistory();
+		
 			
 			for(int i=0;i<meet.size();i++)
 			{
 			%>
                 
                     <tr>
-                        <td data-label="Sr.No."><%=meet.get(i).getMeetingId() %></td>
-                        <td data-label="Employee Id"><%=meet.get(i).getEmpId() %></td>
+                        <td data-label="Meet Id"><%=meet.get(i).getMeetingId() %></td>
                         <td data-label="Room Id"><%=meet.get(i).getMeetingRoomId() %></td>
+                        <td data-label="Room Type"><%=meet.get(i).getMeetingRoomType() %></td>
                         <td data-label="Date"><%=meet.get(i).getMeetingDate() %></td>
                         <td data-label="In Time"><%=meet.get(i).getMeetingInTime() %></td>
                         <td data-label="Out Time"><%=meet.get(i).getMeetingOutTime() %> </td>
                         <td data-label="Attendees Count"><%=meet.get(i).getMeetingAttendies()%></td>
-                        <td data-label="Admin Id"><%=meet.get(i).getAdminWhoApproved() %></td>
-
                         
                         <%if(meet.get(i).getAdminWhoApproved()==-1)
                         {
@@ -62,8 +60,7 @@
                         	status="Approved";
                         }
                         %>
-                        <td data-label="Status"><%=status %></td>
-                        
+                        <td data-label="Approval"><%=status %></td>
                     </tr>
              <%} %>
 
