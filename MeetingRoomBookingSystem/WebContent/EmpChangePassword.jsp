@@ -16,6 +16,8 @@
             <input type="password" name="Confirm_Password"  placeholder="Confirm Password"  required="required">
             <button>Change Password</button>
             </form>
+            <br>
+             <div style="color:red">${errorMessage}</div>
         </div>
     </body>
 </html>

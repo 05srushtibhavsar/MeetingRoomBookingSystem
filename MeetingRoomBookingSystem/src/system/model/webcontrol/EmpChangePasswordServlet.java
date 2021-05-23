@@ -3,6 +3,7 @@ package system.model.webcontrol;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,12 +53,16 @@ public class EmpChangePasswordServlet extends HttpServlet {
 				}
 				else
 				{
-					response.sendRedirect("EmpChangePassword.jsp");
+					request.setAttribute("errorMessage","Failed To Change Password. Old Password Does not matched");
+					RequestDispatcher dis = request.getRequestDispatcher("EmpChangePassword.jsp");
+					dis.forward(request, response);
 				}
 			}
 			else
 			{
-				response.sendRedirect("EmpChangePassword.jsp");
+				request.setAttribute("errorMessage","New Password and Confirm Password Does Not Match");
+				RequestDispatcher dis = request.getRequestDispatcher("EmpChangePassword.jsp");
+				dis.forward(request, response);
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {

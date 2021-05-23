@@ -86,9 +86,9 @@
             
                 <p>Add facility</p>
                 <input type="text" name = "AddFacility" placeholder="Enter facility"><br><br>
-                <input type="submit" name = "sub" value="Add" onClick = "return adminAddFacility(); "><br>
+                <input type="submit" name = "sub" value="Add" onClick = "return adminAddFacility(); "><br><br>
             </form>
-         
+         <div style="color:red">${errorMessage}</div>
     </div>
 </body>
 </html>

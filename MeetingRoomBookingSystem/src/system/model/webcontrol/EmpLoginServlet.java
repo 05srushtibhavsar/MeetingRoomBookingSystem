@@ -3,6 +3,7 @@ package system.model.webcontrol;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +50,10 @@ public class EmpLoginServlet extends HttpServlet {
 			}
 			else
 			{
-				response.sendRedirect("EmpLogin.jsp");
+				
+				request.setAttribute("errorMessage","Mobile Number or Password incorrect..");
+				RequestDispatcher dis = request.getRequestDispatcher("EmpLogin.jsp");
+				dis.forward(request, response);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

@@ -98,3 +98,21 @@ function adminAddFacility()
 	return false;
 	}
 }
+
+
+function EmpBookRoom()
+{
+	var date = document.EmpBooKRoom.Date.value;
+	var inTime = document.EmpBooKRoom.InTime.value;
+	var outTime = document.EmpBooKRoom.OutTime.value;
+	var attendees = document.EmpBooKRoom.Attendees.value;
+	
+	if(date=="" || inTime=="" || outTime=="" || attendees=="")
+	{
+	alert("Please enter all fields");
+	document.EmpBooKRoom.Date.focus;
+	return false;
+	}
+	
+}
+

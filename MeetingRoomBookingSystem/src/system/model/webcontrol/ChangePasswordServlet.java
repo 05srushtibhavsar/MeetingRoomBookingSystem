@@ -23,6 +23,7 @@ public class ChangePasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	ProcessWithDatabase processdata;
+	public static String errorMessage=null;
   
 	
 	public void init(ServletConfig config) throws ServletException {
@@ -64,11 +65,13 @@ public class ChangePasswordServlet extends HttpServlet {
 				}
 				else
 				{
+					errorMessage="Incorrect Old Password";
 					response.sendRedirect("AdminChangePassword.jsp");
 				}
 			}
 			else
 			{
+				errorMessage = "New Password and Confirm Password Not Matched";
 				response.sendRedirect("AdminChangePassword.jsp");
 			}
 			

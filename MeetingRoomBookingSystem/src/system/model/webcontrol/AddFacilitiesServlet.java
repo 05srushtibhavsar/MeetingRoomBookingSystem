@@ -3,6 +3,7 @@ package system.model.webcontrol;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,7 +49,9 @@ public class AddFacilitiesServlet extends HttpServlet {
 			}
 			else
 			{
-				response.sendRedirect("AdminAddFacilities.jsp");
+				request.setAttribute("errorMessage","Failed to add facility..\nTry Again");
+				RequestDispatcher dis = request.getRequestDispatcher("AdminAddFacilities.jsp");
+				dis.forward(request, response);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

@@ -48,16 +48,28 @@ public class EmpBookRoomServlet extends HttpServlet {
 		String id = RoomId.roomId;
 		
 		try {
-			int status = processdata.BookRoom(id, Date, InTime, OutTime, attendies);
-			if(status==1)
+			  System.out.println("111111");
+			boolean statusOfMachingData = processdata.checkAvailability(Date,id,InTime,OutTime);
+			  System.out.println("2222222");
+			if(statusOfMachingData==true)
 			{
-		
-				response.sendRedirect("EmpHomePage.jsp");
+				  System.out.println("33333");
+				int status = processdata.BookRoom(id, Date, InTime, OutTime, attendies);
+				if(status==1)
+				{
+			
+					response.sendRedirect("EmpHomePage.jsp");
+				}
+				else
+				{
+					response.sendRedirect("EmpBookRoom.jsp");
+				}
 			}
 			else
 			{
 				response.sendRedirect("EmpBookRoom.jsp");
 			}
+		
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

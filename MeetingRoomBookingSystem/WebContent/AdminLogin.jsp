@@ -11,6 +11,7 @@
 
     <div class="loginbox">
     <img src="avatar4.webp" class="avatar">
+   
         <h1> Admin Login Here</h1>
         <form action = "AdminLoginpage" method="post" name="adminLogin">
         
@@ -21,10 +22,13 @@
             <br><br><br>
             <input type ="submit" value = "Login" onClick = "return adminLoginValidate(); "><br><br>
             	
-            <a href = "#" >Forgot Password?</a><br>
+            <a href = "#" >Forgot Password?</a><br><br>
         
             
         </form>
+        
+   		<div style="color:red">${errorMessage}</div>
+        
          
     </div>
 </body>

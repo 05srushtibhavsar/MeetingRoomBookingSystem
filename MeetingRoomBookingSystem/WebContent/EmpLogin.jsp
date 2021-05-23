@@ -21,10 +21,11 @@
             <br><br><br>
             <input type ="submit" value = "Login" onClick = "return EmpLoginValidate(); "><br><br>
             	
-            <a href = "EmpRegister.jsp" >Do not have an account?</a><br>
+            <a href = "EmpRegister.jsp" >Do not have an account?</a><br><br>
             
         </form>
          
+         <div style="color:red">${errorMessage}</div>
     </div>
 </body>
 </html>

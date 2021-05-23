@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.*;
 
 import system.model.bean.AdminInfo;
 import system.model.bean.DatabaseDetails;
@@ -333,6 +336,104 @@ public class ProcessWithDatabase {
 			rs=st.executeUpdate(query);
 		}
 		return rs;
+		
+	}
+	
+	public boolean checkAvailability(String date, String id, String inTime, String outTime) throws ClassNotFoundException, SQLException
+	{
+		
+		String in_time = inTime + ":00";
+		String out_time = outTime + ":00";
+		
+	
+		boolean Instatus = false;
+		boolean Outstatus = false;
+		
+		
+		System.out.println(in_time);
+		System.out.print(out_time);
+		
+		System.out.print("^^^^^^^^");
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection(details.url, details.uname, details.pass);
+		Statement st=con.createStatement();
+
+		String query=" select * from bookedroom where admin_id!=-1;";
+		ResultSet rs=st.executeQuery(query);
+		
+		
+		while(rs.next())
+		{
+			if(date.equals(rs.getString(4)))
+			{
+				if(rs.getInt(3)==Integer.parseInt(id))
+				{
+					
+					try {
+					    String string1 = rs.getString(5)+":00";
+					    Date time1 = new SimpleDateFormat("HH:mm:ss").parse(string1);
+					    Calendar calendar1 = Calendar.getInstance();
+					    calendar1.setTime(time1);
+					    calendar1.add(Calendar.DATE, 1);
+
+
+					    String string2 = rs.getString(6)+":00";
+					    Date time2 = new SimpleDateFormat("HH:mm:ss").parse(string2);
+					    Calendar calendar2 = Calendar.getInstance();
+					    calendar2.setTime(time2);
+					    calendar2.add(Calendar.DATE, 1);
+
+					 
+					    Date d = new SimpleDateFormat("HH:mm:ss").parse(in_time);
+					    Calendar calendar3 = Calendar.getInstance();
+					    calendar3.setTime(d);
+					    calendar3.add(Calendar.DATE, 1);
+					    
+			
+					    Date outT = new SimpleDateFormat("HH:mm:ss").parse(out_time);
+					    Calendar calendar4 = Calendar.getInstance();
+					    calendar4.setTime(outT);
+					    calendar4.add(Calendar.DATE, 1);
+
+					    Date x = calendar3.getTime();
+					    Date y = calendar4.getTime();
+					    
+					    if (x.after(calendar1.getTime()) && x.before(calendar2.getTime())) {
+					        //checkes whether the current time is between 14:49:00 and 20:11:13.
+					        System.out.println(true);
+					        System.out.println("***************");
+					        Instatus = true;
+					        
+					    }
+					    
+					    if (y.after(calendar1.getTime()) && y.before(calendar2.getTime())) {
+					        //checkes whether the current time is between 14:49:00 and 20:11:13.
+					        System.out.println(true);
+					        System.out.println("$$$$$$$$$");
+					        Outstatus = true;
+					        
+					    }
+					    
+					} catch (ParseException e) {
+					    e.printStackTrace();
+					}
+
+				}
+			}
+			
+		}
+		
+		if( Instatus==false & Outstatus ==false)
+		{
+			  System.out.println("~~~~~~~~~~~");
+			return true;
+		}
+		else
+		{
+			  System.out.println("(((((((((((((((");
+			return false;
+		}
 		
 	}
 	

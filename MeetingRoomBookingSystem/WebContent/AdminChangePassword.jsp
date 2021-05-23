@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import = "system.model.webcontrol.ChangePasswordServlet"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +14,21 @@
             <input type="password" name="OldPassword"  placeholder="Old Password"  required="required">
             <input type="password" name="NewPassword"  placeholder="New Password"  required="required">
             <input type="password" name="ConfirmPassword"  placeholder="Confirm Password"  required="required">
-            <button>Change Password</button>
+            <button>Change Password</button><br><br>
             </form>
+            
+            <%
+            if(ChangePasswordServlet.errorMessage != null)
+			{
+			%>
+			
+			 <div style="color:red"><%=ChangePasswordServlet.errorMessage %></div>
+			 
+			 <%
+			 ChangePasswordServlet.errorMessage=null;
+			 }
+			 %>
+           
         </div>
     </body>
 </html>

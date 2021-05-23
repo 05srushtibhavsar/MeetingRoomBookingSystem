@@ -7,6 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Details</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="JS/AdminLoginJS.js"></script>
 <link rel="stylesheet" href="CSS/EmpBookRoomCss.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,16 +22,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i onclick="w3_close()" class="fa fa-remove hide-large button transparent display-topright"></i>
     <h3>Book Room</h3>
     <hr>
-    <form action="EmpBookRoomServlet" method="post" >
-      <p><label><i class="fa fa-calendar-check-o"></i>Day</label></p>
+    <form action="EmpBookRoomServlet" method="post" name="EmpBooKRoom">
+      <p><label><i class="fa fa-calendar-check-o"></i>Date</label></p>
       <input class="input border" type="date" placeholder="DD MM YYYY" name="Date" required>          
       <p><label><i class="fa fa-calendar-o"></i> From</label></p>
       <input class="input border" type="time" placeholder="DD MM YYYY" name="InTime" required>
       <p><label><i class="fa fa-calendar-o"></i> To</label></p>
       <input class="input border" type="time" placeholder="DD MM YYYY" name="OutTime" required>         
       <p><label><i class="fa fa-male"></i>Attendies</label></p>
-      <input class="input border" type="number" value="1" name="Attendies" min="1" max="6">              
-      <p><button class="button block green left-align" type="submit" >Book</button></p>
+      <input class="input border" type="number" value="1" name="Attendees" min="1" max="6">              
+      <p><button class="button block green left-align" type="submit" onClick = "return EmpBookRoom(); " >Book</button></p>
     </form>
   </div>
   <!-- <div class="bar-block">

@@ -20,7 +20,7 @@
 	
 		<div class="container">
 			<h1 class="text-center my-3">Requests for Roooms</h1>
-			<div class="row">
+			
 			
 			
 			
@@ -36,7 +36,7 @@
 				System.out.println("In $$$$$$$$");	
 			%>
 				
-			
+			<div class="row">
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-body">
@@ -61,12 +61,13 @@
 						</div>
 					</div>
 				</div>
+				</div>
 				
 			<%} %>
 			</form>
 			
 			
-			</div>
+			
 		</div>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
